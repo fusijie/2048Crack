@@ -615,7 +615,8 @@
     .line 509
     sget-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
 
-    invoke-virtual {v1, v0}, Lorg/cocos2dx/lib/Cocos2dxActivity;->startActivity(Landroid/content/Intent;)V
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
+    #invoke-virtual {v1, v0}, Lorg/cocos2dx/lib/Cocos2dxActivity;->startActivity(Landroid/content/Intent;)V
 
     .line 511
     return-void

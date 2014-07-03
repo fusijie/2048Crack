@@ -48,7 +48,9 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
+
 
     return-void
 .end method
@@ -84,7 +86,8 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
 
     return-void
 .end method
@@ -250,7 +253,8 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
+    #invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
 
     return-void
 .end method
@@ -278,7 +282,8 @@
 
     move-result-object v1
 
-    invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
+    #invoke-virtual {v1, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
 
     return-void
 .end method
@@ -302,7 +307,9 @@
 
     invoke-virtual {v0, v1, v2}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/io/Serializable;)Landroid/content/Intent;
 
-    invoke-virtual {p0, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
+    
+    #invoke-static {v0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->startActivityByProxy(Landroid/content/Intent;)V
+    #invoke-virtual {p0, v0}, Landroid/content/Context;->startActivity(Landroid/content/Intent;)V
 
     return-void
 .end method
