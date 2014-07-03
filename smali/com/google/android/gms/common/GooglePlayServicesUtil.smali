@@ -1480,7 +1480,7 @@
 .end method
 
 .method public static isGooglePlayServicesAvailable(Landroid/content/Context;)I
-    .locals 8
+    .locals 9
     .parameter "context"
 
     .prologue
@@ -1490,12 +1490,17 @@
 
     const/4 v1, 0x0
 
-    invoke-virtual {p0}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v8
+
+    invoke-virtual {v8}, Landroid/content/Context;->getPackageManager()Landroid/content/pm/PackageManager;
 
     move-result-object v3
 
     :try_start_0
-    invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v8
+    invoke-virtual {v8}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v4
 
@@ -1533,7 +1538,9 @@
     goto :goto_0
 
     :cond_0
-    invoke-static {p0}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->n(Landroid/content/Context;)V
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v8
+    invoke-static {v8}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->n(Landroid/content/Context;)V
 
     :try_start_1
     const-string v4, "com.android.vending"
@@ -1722,7 +1729,7 @@
 .end method
 
 .method public static m(Landroid/content/Context;)V
-    .locals 5
+    .locals 6
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Lcom/google/android/gms/common/GooglePlayServicesRepairableException;,
@@ -1730,7 +1737,9 @@
         }
     .end annotation
 
-    invoke-static {p0}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v5
+    invoke-static {v5}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I
 
     move-result v0
 
@@ -1738,7 +1747,9 @@
 
     const/4 v1, -0x1
 
-    invoke-static {p0, v0, v1}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->a(Landroid/content/Context;II)Landroid/content/Intent;
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v5
+    invoke-static {v5, v0, v1}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->a(Landroid/content/Context;II)Landroid/content/Intent;
 
     move-result-object v1
 

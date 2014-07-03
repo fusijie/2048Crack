@@ -1,5 +1,5 @@
 .class public abstract Lorg/cocos2dx/lib/Cocos2dxActivity;
-.super Landroid/app/Activity;
+.super Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;
 .source "Cocos2dxActivity.java"
 
 # interfaces
@@ -27,6 +27,8 @@
 .field private static interstitialAd:Lcom/google/android/gms/ads/InterstitialAd;
 
 .field private static sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
+
+.field protected static thatContext:Landroid/app/Activity;
 
 
 # instance fields
@@ -58,6 +60,11 @@
 
     sput-object v0, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
 
+    const/4 v0, 0x0
+
+    sput-object v0, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+
+
     .line 102
     return-void
 .end method
@@ -67,7 +74,9 @@
 
     .prologue
     .line 69
-    invoke-direct {p0}, Landroid/app/Activity;-><init>()V
+    #invoke-direct {p0}, Landroid/app/Activity;-><init>()V
+    invoke-direct {p0}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;-><init>()V
+
 
     .line 93
     const/4 v0, 0x0
@@ -187,7 +196,8 @@
 
     .prologue
     .line 122
-    sget-object v0, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
+    #sget-object v0, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
+    sget-object v0, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
 
     return-object v0
 .end method
@@ -383,11 +393,13 @@
 
     .prologue
     .line 109
-    sget-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
+    sget-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
 
-    invoke-static {v1}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I
+    #invoke-static {v1}, Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I
 
-    move-result v0
+    #move-result v0
+
+    const/4 v0, 0x0
 
     .line 110
     .local v0, status:I
@@ -776,7 +788,7 @@
 
 # virtual methods
 .method public init()V
-    .locals 11
+    .locals 13
 
     .prologue
     const/4 v2, -0x1
@@ -792,7 +804,9 @@
     .local v10, framelayout_params:Landroid/view/ViewGroup$LayoutParams;
     new-instance v9, Landroid/widget/FrameLayout;
 
-    invoke-direct {v9, p0}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
+    #invoke-direct {v9, p0}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
+    sget-object v11, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    invoke-direct {v9, v11}, Landroid/widget/FrameLayout;-><init>(Landroid/content/Context;)V
 
     .line 629
     .local v9, framelayout:Landroid/widget/FrameLayout;
@@ -811,7 +825,9 @@
     .local v8, edittext_layout_params:Landroid/view/ViewGroup$LayoutParams;
     new-instance v7, Lorg/cocos2dx/lib/Cocos2dxEditText;
 
-    invoke-direct {v7, p0}, Lorg/cocos2dx/lib/Cocos2dxEditText;-><init>(Landroid/content/Context;)V
+    #invoke-direct {v7, p0}, Lorg/cocos2dx/lib/Cocos2dxEditText;-><init>(Landroid/content/Context;)V
+    sget-object v12, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    invoke-direct {v7, v12}, Lorg/cocos2dx/lib/Cocos2dxEditText;-><init>(Landroid/content/Context;)V
 
     .line 636
     .local v7, edittext:Lorg/cocos2dx/lib/Cocos2dxEditText;
@@ -956,10 +972,15 @@
 
     .prologue
     .line 345
-    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    #invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+    invoke-super {p0, p1}, Lcom/chukong/cocosplay/client/CocosPlayClientBaseActivity;->onCreate(Landroid/os/Bundle;)V
 
     .line 346
     sput-object p0, Lorg/cocos2dx/lib/Cocos2dxActivity;->sContext:Lorg/cocos2dx/lib/Cocos2dxActivity;
+
+    invoke-virtual {p0}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getProxyActivity()Landroid/app/Activity;
+    move-result-object v1
+    sput-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
 
     .line 347
     new-instance v1, Lorg/cocos2dx/lib/Cocos2dxHandler;
@@ -969,13 +990,16 @@
     iput-object v1, p0, Lorg/cocos2dx/lib/Cocos2dxActivity;->mHandler:Lorg/cocos2dx/lib/Cocos2dxHandler;
 
     .line 348
-    invoke-static {p0, p0}, Lorg/cocos2dx/lib/Cocos2dxHelper;->init(Landroid/content/Context;Lorg/cocos2dx/lib/Cocos2dxHelper$Cocos2dxHelperListener;)V
+    #invoke-static {p0, p0}, Lorg/cocos2dx/lib/Cocos2dxHelper;->init(Landroid/content/Context;Lorg/cocos2dx/lib/Cocos2dxHelper$Cocos2dxHelperListener;)V
+    sget-object v2, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    invoke-static {v2, p0}, Lorg/cocos2dx/lib/Cocos2dxHelper;->init(Landroid/content/Context;Lorg/cocos2dx/lib/Cocos2dxHelper$Cocos2dxHelperListener;)V
 
     .line 349
     invoke-virtual {p0}, Lorg/cocos2dx/lib/Cocos2dxActivity;->init()V
 
     .line 350
-    invoke-static {p0}, Lcom/crashlytics/android/Crashlytics;->start(Landroid/content/Context;)V
+    sget-object v2, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    invoke-static {v2}, Lcom/crashlytics/android/Crashlytics;->start(Landroid/content/Context;)V
 
     .line 353
     invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
@@ -1042,13 +1066,15 @@
 .end method
 
 .method public onCreateView()Lorg/cocos2dx/lib/Cocos2dxGLSurfaceView;
-    .locals 1
+    .locals 2
 
     .prologue
     .line 675
     new-instance v0, Lorg/cocos2dx/lib/Cocos2dxGLSurfaceView;
 
-    invoke-direct {v0, p0}, Lorg/cocos2dx/lib/Cocos2dxGLSurfaceView;-><init>(Landroid/content/Context;)V
+    #invoke-direct {v0, p0}, Lorg/cocos2dx/lib/Cocos2dxGLSurfaceView;-><init>(Landroid/content/Context;)V
+    sget-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    invoke-direct {v0, v1}, Lorg/cocos2dx/lib/Cocos2dxGLSurfaceView;-><init>(Landroid/content/Context;)V
 
     return-object v0
 .end method

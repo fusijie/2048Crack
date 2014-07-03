@@ -36,9 +36,11 @@
 
     .prologue
     .line 478
-    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->isGameCenterDisabled()Z
+    #invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->isGameCenterDisabled()Z
 
-    move-result v1
+    #move-result v1
+
+    const/4 v1, 0x1
 
     if-nez v1, :cond_0
 

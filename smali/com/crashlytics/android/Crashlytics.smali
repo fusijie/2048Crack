@@ -2058,14 +2058,16 @@
 .end method
 
 .method public static start(Landroid/content/Context;)V
-    .locals 1
+    .locals 2
     .parameter "context"
 
     .prologue
     .line 124
     const/high16 v0, 0x3f80
 
-    invoke-static {p0, v0}, Lcom/crashlytics/android/Crashlytics;->start(Landroid/content/Context;F)V
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v0
+    invoke-static {p0, v1}, Lcom/crashlytics/android/Crashlytics;->start(Landroid/content/Context;F)V
 
     .line 125
     return-void

@@ -80,7 +80,9 @@
 .method public static initialize(Ljava/lang/String;)V
     .locals 2
 
-    sget-object v0, Lcom/nextpeer/android/NextpeerCocos2DX;->a:Landroid/content/Context;
+    #sget-object v0, Lcom/nextpeer/android/NextpeerCocos2DX;->a:Landroid/content/Context;
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v0
 
     if-nez v0, :cond_0
 
@@ -93,7 +95,9 @@
     throw v0
 
     :cond_0
-    sget-object v0, Lcom/nextpeer/android/NextpeerCocos2DX;->a:Landroid/content/Context;
+    #sget-object v0, Lcom/nextpeer/android/NextpeerCocos2DX;->a:Landroid/content/Context;
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v0
 
     sget-object v1, Lcom/nextpeer/android/NextpeerCocos2DX;->b:Lcom/nextpeer/android/NextpeerCocos2DX;
 
