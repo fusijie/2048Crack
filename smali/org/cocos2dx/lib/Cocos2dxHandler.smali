@@ -52,7 +52,7 @@
 .end method
 
 .method private showDialog(Landroid/os/Message;)V
-    .locals 5
+    .locals 6
     .parameter "msg"
 
     .prologue
@@ -75,7 +75,9 @@
     .local v0, dialogMessage:Lorg/cocos2dx/lib/Cocos2dxHandler$DialogMessage;
     new-instance v2, Landroid/app/AlertDialog$Builder;
 
-    invoke-direct {v2, v1}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    invoke-static {}, Lorg/cocos2dx/lib/Cocos2dxActivity;->getContext()Landroid/content/Context;
+    move-result-object v5
+    invoke-direct {v2, v5}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
 
     .line 80
     iget-object v3, v0, Lorg/cocos2dx/lib/Cocos2dxHandler$DialogMessage;->titile:Ljava/lang/String;

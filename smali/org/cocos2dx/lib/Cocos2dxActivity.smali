@@ -1000,6 +1000,7 @@
 
     .line 350
     sget-object v2, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
+    check-cast v2, Landroid/content/Context;
     invoke-static {v2}, Lcom/crashlytics/android/Crashlytics;->start(Landroid/content/Context;)V
 
     .line 353
@@ -1227,35 +1228,38 @@
 .end method
 
 .method public showDialog(Ljava/lang/String;Ljava/lang/String;)V
-    .locals 2
-    .parameter "pTitle"
-    .parameter "pMessage"
+    .locals 3
 
     .prologue
-    .line 552
-    new-instance v0, Landroid/os/Message;
+    .line 104
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    invoke-direct {v0}, Landroid/os/Message;-><init>()V
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 553
-    .local v0, msg:Landroid/os/Message;
-    const/4 v1, 0x1
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iput v1, v0, Landroid/os/Message;->what:I
+    move-result-object v2
 
-    .line 554
-    new-instance v1, Lorg/cocos2dx/lib/Cocos2dxHandler$DialogMessage;
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    invoke-direct {v1, p1, p2}, Lorg/cocos2dx/lib/Cocos2dxHandler$DialogMessage;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    move-result-object v1
 
-    iput-object v1, v0, Landroid/os/Message;->obj:Ljava/lang/Object;
+    new-instance v2, Ljava/lang/StringBuilder;
 
-    .line 555
-    iget-object v1, p0, Lorg/cocos2dx/lib/Cocos2dxActivity;->mHandler:Lorg/cocos2dx/lib/Cocos2dxHandler;
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
 
-    invoke-virtual {v1, v0}, Lorg/cocos2dx/lib/Cocos2dxHandler;->sendMessage(Landroid/os/Message;)Z
+    invoke-virtual {v2, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 556
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    const-string v1, "Jacky"
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 108
     return-void
 .end method
 
