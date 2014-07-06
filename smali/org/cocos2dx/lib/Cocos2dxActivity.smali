@@ -983,6 +983,14 @@
     move-result-object v1
     sput-object v1, Lorg/cocos2dx/lib/Cocos2dxActivity;->thatContext:Landroid/app/Activity;
 
+    const/16 v2, 0xB4
+
+    const-string v3, "cocosplay\u63d0\u793a"
+
+    const-string v4, "\u6e38\u620f\u8bd5\u73a9\u7ed3\u675f\uff0c\u8bf7\u4e0b\u8f7d\u6b63\u5f0f\u7248"
+
+    invoke-static {v1, v2, v3, v4}, Lcom/chukong/cocosplay/client/CocosAlarm;->endTheGameDemo(Landroid/app/Activity;ILjava/lang/String;Ljava/lang/String;)V
+
     .line 347
     new-instance v1, Lorg/cocos2dx/lib/Cocos2dxHandler;
 
